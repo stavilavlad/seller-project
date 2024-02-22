@@ -1,5 +1,13 @@
+import { CategoriesGrid, Hero, SearchForm } from "../components/index";
+
 const HomePage = () => {
-  return <div className="text-3xl">HomePage</div>;
+  return (
+    <div className="">
+      <SearchForm />
+      <CategoriesGrid />
+      <Hero />
+    </div>
+  );
 };
 
 export default HomePage;

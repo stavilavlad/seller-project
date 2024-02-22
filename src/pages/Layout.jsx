@@ -1,11 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Navbar, Footer } from "../components/index";
 
 const Layout = () => {
   return (
     <>
-      <div className="text-3xl">Layout</div>
+      <Navbar />
       <Outlet />
+      <Footer />
     </>
   );
 };

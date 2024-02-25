@@ -1,8 +1,9 @@
 import { Form } from "react-router-dom";
 import { categories } from "../utils/data";
-import ImagesGrid from "../components/ImagesGrid";
+import ImagesGridInput from "../components/ImagesGridInput";
 import axios from "axios";
 import { toast } from "react-toastify";
+import PriceInput from "../components/PriceInput";
 
 export const action = async ({ request }) => {
   try {
@@ -73,7 +74,11 @@ const Listing = () => {
         </div>
 
         {/* IMAGE */}
-        <ImagesGrid />
+        <ImagesGridInput />
+
+        {/* PRICE */}
+        <PriceInput />
+
         <button type="submit" className="btn btn-primary">
           Create Listing
         </button>

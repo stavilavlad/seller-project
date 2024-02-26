@@ -1,5 +1,6 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { BiImageAdd } from "react-icons/bi";
 
 const ProductsGrid = () => {
   const { products, count } = useLoaderData();
@@ -9,9 +10,10 @@ const ProductsGrid = () => {
       {products.map((item) => {
         const { id, title, description, images, price, negociable, category } = item;
         const shortDescr = description.substring(0, 35);
+        console.log(id);
         return (
-          <div key={id} className="card card-compact sm:max-w-96 shadow-xl hover:scale-105 duration-200">
-            <figure>{images.length > 0 ? <img src={`http://localhost:3000/uploads/${images[0]}`} alt={title} className="w-full h-64 md:h-48 lg:h-48 xl:h-60 object-cover" /> : <BiImageAdd className="w-32 h-32" />}</figure>
+          <Link key={id} to={`/products/${id}`} className="card card-compact sm:max-w-96 shadow-xl hover:scale-105 duration-200">
+            <figure>{images.length > 0 ? <img src={`http://localhost:3000/uploads/${images[0]}`} alt={title} className="w-full h-64 md:h-48 lg:h-48 xl:h-60 object-cover" /> : <BiImageAdd className="w-full h-64 md:h-48 xl:h-60 " />}</figure>
             <div className="card-body  rounded-b-box">
               <div className="flex justify-between sm:px-2">
                 <h2 className="card-title text-xl md:text-lg lg:text-lg">{title}</h2>
@@ -35,7 +37,7 @@ const ProductsGrid = () => {
                 <div className="font-semibold sm:px-2 text-lg text-accent">{price ? price + "$" : "Exchange"}</div>
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

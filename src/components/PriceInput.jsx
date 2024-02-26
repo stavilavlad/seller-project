@@ -12,7 +12,7 @@ const PriceInput = () => {
             Price
           </button>
           <button type="button" onClick={() => setMode("exchange")} className={`btn bg-base-300 rounded-l-none ${mode == "exchange" ? "bg-primary hover:bg-primary" : ""}`}>
-            Exchance
+            Exchange
           </button>
         </div>
         {mode == "price" ? (

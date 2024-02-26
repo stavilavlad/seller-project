@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Filters, ProductsContainer } from "../components/index";
-import { BiImageAdd } from "react-icons/bi";
 
 export const loader = async () => {
   const response = await axios.get("http://localhost:3000/products");

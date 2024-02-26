@@ -70,7 +70,7 @@ const Listing = () => {
           <label htmlFor="description" className="text-primary font-semibold text-2xl py-3">
             Description
           </label>
-          <textarea name="description" id="description" placeholder="Write a detailed description about the product..." className="bg-base-300 rounded-lg mb-5 p-3 pb-10 tracking-wide lg:max-w-[60%]"></textarea>
+          <textarea name="description" id="description" placeholder="Write a detailed description about the product..." className="bg-base-300 rounded-lg mb-5 p-3 pb-10 tracking-wide lg:max-w-[60%] whitespace-pre-wrap"></textarea>
         </div>
 
         {/* IMAGE */}

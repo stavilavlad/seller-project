@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, Layout, Products, Listing, SingleProduct } from "./pages/index";
+import { HomePage, Layout, Products, Listing, SingleProduct, MyListings } from "./pages/index";
 
 // LOADERS
 import { loader as loaderProducts } from "./pages/Products";
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
         path: "listing",
         element: <Listing />,
         action: actionListing,
+      },
+      {
+        path: "mylistings",
+        element: <MyListings />,
       },
     ],
   },

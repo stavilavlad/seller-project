@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Filters, ProductsContainer } from "../components/index";
+import { Filters, ProductsContainer, SearchForm } from "../components/index";
 
 export const loader = async () => {
   const response = await axios.get("http://localhost:3000/products");
@@ -11,11 +11,40 @@ export const loader = async () => {
 };
 
 const Products = () => {
+  const { products, count } = useLoaderData();
+  const maxPrice = Math.max(...products.map((product) => product.price));
+
+  const [filters, setFilters] = useState({
+    search: null,
+    category: null,
+    new: false,
+    maxPrice: maxPrice,
+    range: maxPrice,
+  });
+
+  const [text, setText] = useState(filters.search || "");
+
+  const filteredProducts = products.filter((product) => {
+    console.log(product);
+    const titleMatch = !filters.search || product.title.toLowerCase().includes(filters.search.toLowerCase());
+    const categoryMatch = !filters.category || product.category.toLowerCase() === filters.category.toLowerCase();
+    const newMatch = !filters.new || product.new === filters.new;
+    const rangeMatch = product.price <= parseInt(filters.range, 10);
+    console.log(titleMatch && categoryMatch && newMatch && rangeMatch);
+    return titleMatch && categoryMatch && newMatch && rangeMatch;
+  });
+
+  const filteredCount = filteredProducts.length;
+  console.log(filteredProducts);
+
   return (
-    <div className="align-element my-12 gap-4 grid sm:grid-cols-[200px_1fr] ">
-      <Filters />
-      <ProductsContainer />
-    </div>
+    <>
+      <SearchForm filters={filters} setFilters={setFilters} text={text} setText={setText} />
+      <div className="align-element my-6 gap-4 grid sm:grid-cols-[200px_1fr] ">
+        <Filters filters={filters} setFilters={setFilters} maxPrice={maxPrice} setText={setText} />
+        <ProductsContainer filters={filters} products={products} count={count} filteredCount={filteredCount} filteredProducts={filteredProducts} />
+      </div>
+    </>
   );
 };
 

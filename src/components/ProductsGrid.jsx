@@ -2,15 +2,11 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { BiImageAdd } from "react-icons/bi";
 
-const ProductsGrid = () => {
-  const { products, count } = useLoaderData();
-
+const ProductsGrid = ({ filters, filteredProducts, products }) => {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {products.map((item) => {
+      {(filters.search || filters.category || filters.new || filters.range ? filteredProducts : products).map((item) => {
         const { id, title, description, images, price, negociable, category } = item;
-        const shortDescr = description.substring(0, 35);
-        console.log(id);
         return (
           <Link key={id} to={`/products/${id}`} className="card card-compact sm:max-w-96 shadow-xl hover:scale-105 duration-200">
             <figure>{images.length > 0 ? <img src={`http://localhost:3000/uploads/${images[0]}`} alt={title} className="w-full h-64 md:h-48 lg:h-48 xl:h-60 object-cover" /> : <BiImageAdd className="w-full h-64 md:h-48 xl:h-60 " />}</figure>

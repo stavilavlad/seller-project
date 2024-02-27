@@ -1,11 +1,10 @@
 import { useLoaderData, Link } from "react-router-dom";
 import { BiImageAdd } from "react-icons/bi";
 
-const ProductsList = () => {
-  const { products, count } = useLoaderData();
+const ProductsList = ({ filters, filteredProducts, products }) => {
   return (
     <div className="grid gap-y-8">
-      {products.map((item) => {
+      {(filters.search || filters.category || filters.new || filters.range ? filteredProducts : products).map((item) => {
         const { id, title, description, images, price, negociable, category } = item;
 
         return (
@@ -15,7 +14,7 @@ const ProductsList = () => {
               <div>
                 <div className="flex justify-between gap-x-12 lg:gap-x-24">
                   <h2 className=" font-semibold text-xl lg:text-2xl">{title}</h2>
-                  <div className="font-semibold sm:px-2 text-lg text-accent ">{price ? price + "$" : "Exchange"}</div>
+                  <div className="font-semibold sm:px-2 text-xl text-accent ">{price ? price + "$" : "Exchange"}</div>
                 </div>
                 <div className="flex my-3">
                   <div>

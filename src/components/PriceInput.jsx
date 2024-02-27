@@ -21,7 +21,7 @@ const PriceInput = () => {
               <label htmlFor="price" className="mb-1">
                 Select Price
               </label>
-              <input type="number" step="0.01" name="price" placeholder="1234.34" id="price" required className="input input-bordered input-sm bg-base-300 mb-4" />
+              <input type="number" step="0.01" name="price" placeholder="1234.34" max={100000} id="price" required className="input input-bordered input-sm bg-base-300 mb-4" />
             </div>
             <div className="flex flex-col justify-center pt-2 pl-4">
               <label className="label cursor-pointer">

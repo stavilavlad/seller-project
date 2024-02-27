@@ -3,7 +3,7 @@ import { CategoriesGrid, Hero, SearchForm } from "../components/index";
 const HomePage = () => {
   return (
     <div className="">
-      <SearchForm />
+      {/* <SearchForm /> */}
       <CategoriesGrid />
       <Hero />
     </div>

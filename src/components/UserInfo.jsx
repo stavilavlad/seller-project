@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const UserInfo = () => {
   return (
-    <div className="">
-      <div className="bg-base-200 rounded-md p-6 flex flex-col">
+    <div className="w-full">
+      <div className="bg-base-200 rounded-md p-6 form-control w-full">
         <h2 className="text-lg font-semibold">UserName</h2>
         <p>Joined:</p>
         <p>Maybe Location</p>

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Form } from "react-router-dom";
 import { categories } from "../utils/data";
+import { FiltersContext } from "../App";
 
-const Filters = ({ filters, setFilters, maxPrice, setText }) => {
-  const [range, setRange] = useState(filters.range);
+const Filters = ({ maxPrice, setText }) => {
+  const { filters, setFilters } = useContext(FiltersContext);
+  const [range, setRange] = useState(() => filters.range || maxPrice);
 
   function handleCategory(e) {
     setFilters({ ...filters, category: e.target.innerText });

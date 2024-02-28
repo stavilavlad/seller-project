@@ -17,8 +17,8 @@ const SingleProduct = () => {
 
   return (
     <div className="align-element grid md:grid-cols-4 gap-6 my-8">
-      <div className="bg-base-200 col-span-3 rounded-md">
-        <h2 className="text-3xl font-bold py-6 mx-6 border-b-2 border-base-300">{title}</h2>
+      <div className="bg-base-200 md:col-span-3 rounded-md">
+        <h2 className=" text-2xl sm:text-3xl font-bold py-6 mx-6 border-b-2 border-base-300">{title}</h2>
         <div className="flex justify-between">
           <p className="mx-6 pt-2 font-medium text-sm sm:text-base text-slate-500">Published on {date.substring(0, 10)}</p>
           <p className="mx-6 pt-2 font-medium text-sm sm:text-base text-slate-500">Views: {views.views}</p>
@@ -33,7 +33,7 @@ const SingleProduct = () => {
             return (
               <div key={image} id={`slide${index}`} className="carousel-item relative w-full">
                 <img src={`http://localhost:3000/uploads/${image}`} alt={title} className="w-full max-h-[900px] object-contain px-6 pt-2 pb-6" />
-                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 p-8">
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-1 right-1  sm:left-5 sm:right-5 top-1/2 p-8">
                   <a href={`#slide${prevIndex}`} className="btn btn-circle btn-sm">
                     ❮
                   </a>
@@ -51,7 +51,7 @@ const SingleProduct = () => {
       <UserInfo />
 
       {/* DESCRIPTION AND OTHER INFO */}
-      <div className="bg-base-200 col-span-3 rounded-md p-6">
+      <div className="bg-base-200 md:col-span-3 rounded-md p-6">
         <div className="pb-4 flex gap-2 flex-wrap justify-between">
           <div className="flex gap-2">
             <Link to="#" className="btn btn-sm border-none capitalize bg-base-300">

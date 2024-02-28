@@ -4,6 +4,7 @@ import ImagesGridInput from "../components/ImagesGridInput";
 import axios from "axios";
 import { toast } from "react-toastify";
 import PriceInput from "../components/PriceInput";
+import { useState } from "react";
 
 export const action = async ({ request }) => {
   try {
@@ -21,6 +22,8 @@ export const action = async ({ request }) => {
 };
 
 const Listing = () => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   return (
     <div className="align-element">
       <h1 className="text-3xl font-bold mt-8 ">Create Listing</h1>
@@ -31,9 +34,11 @@ const Listing = () => {
             <label htmlFor="title" className="text-primary font-semibold text-2xl py-3">
               Product Title
             </label>
-            <input type="text" name="title" id="title" placeholder="Ex. Iphone 11, new etc.." required className=" input bg-base-300 col-span-1 rounded-lg focus:outline-none tracking-wide mr-1" />
-            <label htmlFor="title" className=" text-end">
-              0/10
+            <p className="text-slate-400 text-sm py-1">Min. of 15 characters *</p>
+            <input type="text" name="title" id="title" minLength={15} maxLength={70} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Ex. Iphone 11, new etc.." required className=" input invalid:focus:border-red-500 bg-base-300 col-span-1 rounded-lg focus:outline-none tracking-wide mr-1" />
+            <label htmlFor="title" className="flex justify-between text-end">
+              <div className={`${title.length < 70 ? "opacity-0" : ""} text-red-600`}>Maximum of 70 characters allowed</div>
+              <div>{`${title.length}/70`}</div>
             </label>
             {/* CATEGORY */}
             <div className="grid sm:grid-cols-2">
@@ -70,7 +75,11 @@ const Listing = () => {
           <label htmlFor="description" className="text-primary font-semibold text-2xl py-3">
             Description
           </label>
-          <textarea name="description" id="description" placeholder="Write a detailed description about the product..." className="bg-base-300 rounded-lg mb-5 p-3 pb-10 tracking-wide lg:max-w-[60%] whitespace-pre-wrap"></textarea>
+          <textarea name="description" id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Write a detailed description about the product..." className="bg-base-300 rounded-lg mb-5 p-3 pb-10 tracking-wide lg:max-w-[60%] whitespace-pre-wrap"></textarea>
+          <label htmlFor="description" className="flex justify-between text-end lg:max-w-[60%]">
+            <div className={`${description.length <= 5000 ? "opacity-0" : ""} text-red-600`}>Description should be shorter than 5000 characters</div>
+            <div>{`${description.length}/5000`}</div>
+          </label>
         </div>
 
         {/* IMAGE */}
@@ -79,7 +88,7 @@ const Listing = () => {
         {/* PRICE */}
         <PriceInput />
 
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" disabled={title.length > 70 || description.length > 5000 ? true : false} className={`btn btn-primary`}>
           Create Listing
         </button>
       </Form>

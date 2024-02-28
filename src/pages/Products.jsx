@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Filters, ProductsContainer, SearchForm } from "../components/index";
+import { FiltersContext } from "../App";
 
 export const loader = async () => {
   const response = await axios.get("http://localhost:3000/products");
@@ -14,28 +15,32 @@ const Products = () => {
   const { products, count } = useLoaderData();
   const maxPrice = Math.max(...products.map((product) => product.price));
 
-  const [filters, setFilters] = useState({
-    search: null,
-    category: null,
-    new: false,
-    maxPrice: maxPrice,
-    range: maxPrice,
-  });
-
+  const { filters, setFilters } = useContext(FiltersContext);
   const [text, setText] = useState(filters.search || "");
 
+  useEffect(() => {
+    setFilters((prevFilters) => ({ ...prevFilters, maxPrice: maxPrice, range: maxPrice }));
+
+    return () => {
+      setFilters({
+        search: null,
+        category: null,
+        new: false,
+        maxPrice: maxPrice,
+        range: maxPrice,
+      });
+    };
+  }, []);
+
   const filteredProducts = products.filter((product) => {
-    console.log(product);
-    const titleMatch = !filters.search || product.title.toLowerCase().includes(filters.search.toLowerCase());
-    const categoryMatch = !filters.category || product.category.toLowerCase() === filters.category.toLowerCase();
+    const titleMatch = !filters.search || product.title.toLowerCase().includes(filters?.search?.toLowerCase());
+    const categoryMatch = !filters.category || product.category.toLowerCase() === filters?.category?.toLowerCase();
     const newMatch = !filters.new || product.new === filters.new;
     const rangeMatch = product.price <= parseInt(filters.range, 10);
-    console.log(titleMatch && categoryMatch && newMatch && rangeMatch);
     return titleMatch && categoryMatch && newMatch && rangeMatch;
   });
 
   const filteredCount = filteredProducts.length;
-  console.log(filteredProducts);
 
   return (
     <>

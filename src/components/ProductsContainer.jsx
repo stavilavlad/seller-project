@@ -6,7 +6,6 @@ import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 
 const ProductsContainer = ({ filters, products, count, filteredProducts, filteredCount }) => {
   const [layout, setLayout] = useState("list");
-  console.log(count);
 
   return (
     <div>

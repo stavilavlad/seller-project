@@ -13,7 +13,6 @@ export const action =
       const response = await customFetch.post("/login", data);
 
       store.dispatch(loginUser(response.data));
-      // console.log(response.data);
       toast.success("Logged in successfully");
       return redirect("/");
     } catch (error) {

@@ -1,9 +1,10 @@
-import axios from "axios";
-import { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { UserInfo } from "../components/index";
 import { customFetch } from "../utils";
 import { useSelector } from "react-redux";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+import { toast } from "react-toastify";
 
 export const loader = async (request) => {
   const id = request.params.id;
@@ -14,9 +15,20 @@ export const loader = async (request) => {
 
 const SingleProduct = () => {
   const user = useSelector((state) => state.userState.user);
+  const navigate = useNavigate();
 
   const { product, views } = useLoaderData();
   const { id, title, category, description, images, new: newProperty, date, price, negociable, user_id } = product;
+
+  async function handleDelete() {
+    try {
+      const response = await customFetch.delete(`/products/${id}`);
+      toast.success(response.data);
+      navigate("/mylistings");
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  }
 
   return (
     <div className="align-element grid md:grid-cols-4 gap-6 my-8">
@@ -47,11 +59,29 @@ const SingleProduct = () => {
             );
           })}
         </div>
-        {user.id == user_id ? <button className="btn btn-accent ml-6"> Edit</button> : ""}
       </div>
 
       {/* USER INFO */}
-      <UserInfo product={product} />
+      <div>
+        <UserInfo product={product} />
+        {user?.id == user_id ? (
+          <>
+            <div className="bg-base-200 mt-6 rounded-lg p-6 grid grid-cols-2 gap-4">
+              <h3 className="col-span-2 font-semibold">Modify / Delete Product </h3>
+              <button className="btn btn-accent ">
+                <FaRegEdit className="w-4 h-4" />
+                Edit
+              </button>
+              <button type="button" onClick={handleDelete} className="btn btn-accent ">
+                <MdDeleteForever className="w-5 h-5" />
+                Delete
+              </button>
+            </div>
+          </>
+        ) : (
+          ""
+        )}
+      </div>
 
       {/* DESCRIPTION AND OTHER INFO */}
       <div className="bg-base-200 md:col-span-3 rounded-md p-6">

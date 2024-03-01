@@ -6,3 +6,4 @@ export { default as Footer } from "./Footer.jsx";
 export { default as Filters } from "./Filters.jsx";
 export { default as ProductsContainer } from "./ProductsContainer.jsx";
 export { default as UserInfo } from "./UserInfo.jsx";
+export { default as Pagination } from "./Pagination.jsx";

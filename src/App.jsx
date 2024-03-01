@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, Layout, Products, Listing, SingleProduct, MyListings, Login, Register } from "./pages/index";
+import { HomePage, Layout, Products, Listing, SingleProduct, MyListings, Login, Register, Error } from "./pages/index";
 import { createContext, useState } from "react";
 
 // LOADERS
@@ -19,6 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,

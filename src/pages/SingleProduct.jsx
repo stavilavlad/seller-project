@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { UserInfo } from "../components/index";
 import { customFetch } from "../utils";
+import { useSelector } from "react-redux";
 
 export const loader = async (request) => {
   const id = request.params.id;
@@ -12,8 +13,10 @@ export const loader = async (request) => {
 };
 
 const SingleProduct = () => {
+  const user = useSelector((state) => state.userState.user);
+
   const { product, views } = useLoaderData();
-  const { id, title, category, description, images, new: newProperty, date, price, negociable } = product;
+  const { id, title, category, description, images, new: newProperty, date, price, negociable, user_id } = product;
 
   return (
     <div className="align-element grid md:grid-cols-4 gap-6 my-8">
@@ -44,10 +47,11 @@ const SingleProduct = () => {
             );
           })}
         </div>
+        {user.id == user_id ? <button className="btn btn-accent ml-6"> Edit</button> : ""}
       </div>
 
       {/* USER INFO */}
-      <UserInfo />
+      <UserInfo product={product} />
 
       {/* DESCRIPTION AND OTHER INFO */}
       <div className="bg-base-200 md:col-span-3 rounded-md p-6">

@@ -6,6 +6,7 @@ import { BsFillGrid3X3GapFill, BsList } from "react-icons/bs";
 
 const ProductsContainer = ({ filters, products, count, filteredProducts, filteredCount }) => {
   const [layout, setLayout] = useState("list");
+  console.log(count);
 
   return (
     <div>
@@ -22,7 +23,7 @@ const ProductsContainer = ({ filters, products, count, filteredProducts, filtere
         </div>
       </div>
       {/* DISPLAY */}
-      {count == 0 ? <p className="text-2xl font-semibold py-2">No products matched your search...</p> : layout == "list" ? <ProductsList filters={filters} filteredProducts={filteredProducts} products={products} /> : <ProductsGrid filters={filters} filteredProducts={filteredProducts} products={products} />}
+      {filteredCount == 0 ? <p className="text-2xl font-semibold py-2">No products matched your search...</p> : layout == "list" ? <ProductsList filters={filters} filteredProducts={filteredProducts} products={products} /> : <ProductsGrid filters={filters} filteredProducts={filteredProducts} products={products} />}
     </div>
   );
 };

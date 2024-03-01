@@ -3,27 +3,35 @@ import { Form } from "react-router-dom";
 import { categories } from "../utils/data";
 import { FiltersContext } from "../App";
 
-const Filters = ({ maxPrice, setText }) => {
+const Filters = ({ maxPrice, setText, setCurrentPage }) => {
   const { filters, setFilters } = useContext(FiltersContext);
   const [range, setRange] = useState(() => filters.range || maxPrice);
 
   function handleCategory(e) {
+    setCurrentPage(1);
     setFilters({ ...filters, category: e.target.innerText });
   }
 
   function handleNew(e) {
-    console.log(e.target.checked);
+    setCurrentPage(1);
     setFilters({ ...filters, new: e.target.checked });
   }
 
   return (
-    <div>
+    <div className="col-span-2 sm:col-span-1">
       <div>
         {/* CATEGORIES */}
         <div className="mt-5">
           <h2 className="font-semibold text-xl">Category</h2>
           <div className="form-control py-4">
-            <button type="button" onClick={() => setFilters({ ...filters, category: null })} className={`capitalize text-start  ${filters.category == null ? "link" : ""}`}>
+            <button
+              type="button"
+              onClick={() => {
+                setCurrentPage(1);
+                setFilters({ ...filters, category: null });
+              }}
+              className={`capitalize text-start  ${filters.category == null ? "link" : ""}`}
+            >
               All
             </button>
             {categories.map((item) => {
@@ -48,6 +56,7 @@ const Filters = ({ maxPrice, setText }) => {
             min={0}
             max={filters.maxPrice}
             onChange={(e) => {
+              setCurrentPage(1);
               setRange(e.target.value);
               setFilters({ ...filters, range: e.target.value });
             }}
@@ -68,6 +77,7 @@ const Filters = ({ maxPrice, setText }) => {
         <button
           type="button"
           onClick={() => {
+            setCurrentPage(1);
             setFilters({
               search: null,
               category: null,

@@ -1,8 +1,6 @@
-import { Form } from "react-router-dom";
 import { IoSearchOutline } from "react-icons/io5";
-import { useState } from "react";
 
-const SearchForm = ({ filters, setFilters, text, setText }) => {
+const SearchForm = ({ filters, setFilters, text, setText, setCurrentPage }) => {
   return (
     <div className="align-element flex mt-8">
       <div className=" w-full">
@@ -14,6 +12,7 @@ const SearchForm = ({ filters, setFilters, text, setText }) => {
             id="searchProduct"
             value={text}
             onChange={(e) => {
+              setCurrentPage(1);
               setText(e.target.value);
               setFilters({ ...filters, search: e.target.value });
             }}

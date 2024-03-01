@@ -1,10 +1,9 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
-const UserInfo = () => {
-  const { product } = useLoaderData();
-  console.log(product);
+const UserInfo = ({ product }) => {
   const { user_id, username, registration_date: createdAt } = product;
+
   return (
     <div className="w-full">
       <div className="bg-base-200 rounded-md p-6 form-control w-full">

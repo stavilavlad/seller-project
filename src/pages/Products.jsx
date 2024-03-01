@@ -3,9 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Filters, ProductsContainer, SearchForm } from "../components/index";
 import { FiltersContext } from "../App";
+import { customFetch } from "../utils";
 
 export const loader = async () => {
-  const response = await axios.get("http://localhost:3000/products");
+  const response = await customFetch("/products");
   const products = response.data.products;
   const count = response.data.count;
   return { products, count };

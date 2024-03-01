@@ -1,30 +1,44 @@
-import { Form } from "react-router-dom";
+import { Form, Navigate } from "react-router-dom";
 import { categories } from "../utils/data";
 import ImagesGridInput from "../components/ImagesGridInput";
-import axios from "axios";
 import { toast } from "react-toastify";
 import PriceInput from "../components/PriceInput";
 import { useState } from "react";
+import { customFetch } from "../utils";
+import { useSelector } from "react-redux";
 
-export const action = async ({ request }) => {
-  try {
-    const formData = await request.formData();
-    // const data = Object.fromEntries(formData);
+export const action =
+  (store) =>
+  async ({ request }) => {
+    const user = store.getState().userState.user;
 
-    const response = await axios.post("http://localhost:3000/listing", formData);
-    toast.success("Listing created succesfully");
-    return response;
-  } catch (error) {
-    toast.error("Error creating listing");
-    console.error(error);
-    return null;
-  }
-};
+    try {
+      const formData = await request.formData();
+      formData.append("userId", user.id);
+
+      const response = await customFetch.post("/listing", formData);
+      toast.success("Listing created succesfully");
+      return response;
+    } catch (error) {
+      toast.error("Error creating listing");
+      console.error(error);
+      return null;
+    }
+  };
 
 const Listing = () => {
+  const user = useSelector((state) => state.userState.user);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  if (!user) {
+    toast.warning("You need to log in");
+    return <Navigate to={"/login"} replace={true} />;
+  }
+
   return (
+    // {user || <Navigate to={"/login"} replace={true} />}
     <div className="align-element">
       <h1 className="text-3xl font-bold mt-8 ">Create Listing</h1>
       <Form method="POST" className="pb-8" encType="multipart/form-data">

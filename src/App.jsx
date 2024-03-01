@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, Layout, Products, Listing, SingleProduct, MyListings } from "./pages/index";
+import { HomePage, Layout, Products, Listing, SingleProduct, MyListings, Login, Register } from "./pages/index";
 import { createContext, useState } from "react";
 
 // LOADERS
@@ -8,6 +8,10 @@ import { loader as loaderSingleProduct } from "./pages/SingleProduct";
 
 // ACTIONS
 import { action as actionListing } from "./pages/Listing";
+import { action as actionLogin } from "./pages/Login";
+import { action as actionRegister } from "./pages/Register";
+
+import { store } from "./store";
 
 export const FiltersContext = createContext(null);
 
@@ -33,13 +37,23 @@ const router = createBrowserRouter([
       {
         path: "listing",
         element: <Listing />,
-        action: actionListing,
+        action: actionListing(store),
       },
       {
         path: "mylistings",
         element: <MyListings />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+    action: actionLogin(store),
+  },
+  {
+    path: "/register",
+    element: <Register />,
+    action: actionRegister,
   },
 ]);
 
@@ -51,6 +65,7 @@ function App() {
     maxPrice: "",
     range: "",
   });
+
   return (
     <FiltersContext.Provider value={{ filters, setFilters }}>
       <RouterProvider router={router} />

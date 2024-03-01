@@ -2,17 +2,17 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { UserInfo } from "../components/index";
+import { customFetch } from "../utils";
 
 export const loader = async (request) => {
   const id = request.params.id;
-  const response = await axios(`http://localhost:3000/products/${id}`);
+  const response = await customFetch(`/products/${id}`);
   const { product, views } = response.data;
   return { product, views };
 };
 
 const SingleProduct = () => {
   const { product, views } = useLoaderData();
-  console.log(views);
   const { id, title, category, description, images, new: newProperty, date, price, negociable } = product;
 
   return (
@@ -25,7 +25,6 @@ const SingleProduct = () => {
         </div>
 
         {/* CAROUSEL */}
-
         <div className="carousel w-full">
           {images.map((image, index) => {
             const prevIndex = (index - 1 + images.length) % images.length;

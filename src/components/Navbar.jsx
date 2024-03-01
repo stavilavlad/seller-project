@@ -4,6 +4,8 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { PiSun, PiMoon } from "react-icons/pi";
 import { FiPlus } from "react-icons/fi";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../features/user/userSlice";
 
 const themes = {
   light: "emerald",
@@ -12,14 +14,15 @@ const themes = {
 
 const getLocalTheme = () => {
   const localTheme = localStorage.getItem("theme") || "emerald";
-  // const newTheme = theme == themes.light ? themes.dark : themes.light;
   return localTheme;
 };
 
 const Navbar = () => {
   const [theme, setTheme] = useState(getLocalTheme);
 
-  const user = "u";
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.userState.user);
 
   function handleTheme() {
     setTheme(theme == themes.light ? themes.dark : themes.light);
@@ -53,12 +56,16 @@ const Navbar = () => {
                 </>
               ) : (
                 <div className="border-t-2 border-base-300 mt-2 pt-2 flex flex-col w-full">
-                  <button className="btn btn-sm btn-primary sm:hidden w-full ">Login</button>
-                  <button className="btn btn-sm btn-primary sm:hidden w-full my-1">Register</button>
-                  <button className="btn md:hidden w-full btn-primary btn-sm">
+                  <Link to={"/login"} className="btn btn-sm btn-primary sm:hidden w-full ">
+                    Login
+                  </Link>
+                  <Link to={"/register"} className="btn btn-sm btn-primary sm:hidden w-full my-1">
+                    Register
+                  </Link>
+                  <Link to={"/listing"} className="btn md:hidden w-full btn-primary btn-sm">
                     <FiPlus className="h-4 w-4" />
                     Create Listing
-                  </button>
+                  </Link>
                 </div>
               )}
             </ul>
@@ -72,13 +79,17 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex gap-3 text-xl">
-          <Link to="/listing">
+          <Link to="/listing" className="flex flex-nowrap">
             <button className="hidden md:btn sm:btn-sm sm:h-10 mr-3">
               <FiPlus className="h-4 w-4" />
               Create Listing
             </button>
           </Link>
 
+          <Link to={"/listing"} className="btn btn-square btn-sm md:hidden btn-accent">
+            <FiPlus className="h-4 w-4" />
+          </Link>
+          {/* THEME TOGGLE */}
           <label className="swap swap-rotate">
             <input type="checkbox" className="theme-controller" defaultChecked={theme == themes.light ? false : true} value="synthwave" onClick={handleTheme} />
             <PiSun className="swap-on h-7 w-7" />
@@ -88,7 +99,7 @@ const Navbar = () => {
             <>
               <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost capitalize text-lg">
-                  {user}
+                  {user.username}
                 </div>
                 <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-200 rounded-box w-52 mt-4">
                   <li className="text-base-content">
@@ -103,14 +114,28 @@ const Navbar = () => {
                       Create Listing
                     </Link>
                   </li>
+                  <li className="text-base-content">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        dispatch(logoutUser());
+                      }}
+                    >
+                      Log out
+                    </button>
+                  </li>
                 </ul>
               </div>
             </>
           ) : (
             <>
               <div className="hidden sm:flex gap-4">
-                <button className="btn btn-sm  rounded-box">Login</button>
-                <button className="btn btn-sm btn-primary glass rounded-box">Register</button>
+                <Link to={"/login"} className="btn btn-sm  rounded-box">
+                  Login
+                </Link>
+                <Link to={"/register"} className="btn btn-sm btn-primary glass rounded-box">
+                  Register
+                </Link>
               </div>
             </>
           )}

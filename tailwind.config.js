@@ -6,6 +6,6 @@ export default {
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
-    themes: ["corporate", "dim", "night", "business", "dark", "emerald", "sunset"],
+    themes: ["corporate", "dim", "night", "business", "emerald", "sunset"],
   },
 };

@@ -1,4 +1,4 @@
-import { Form, Navigate } from "react-router-dom";
+import { Form, Navigate, redirect } from "react-router-dom";
 import { categories } from "../utils/data";
 import ImagesGridInput from "../components/ImagesGridInput";
 import { toast } from "react-toastify";
@@ -18,7 +18,7 @@ export const action =
 
       const response = await customFetch.post("/listing", formData);
       toast.success("Listing created succesfully");
-      return response;
+      return redirect("/mylistings");
     } catch (error) {
       toast.error("Error creating listing");
       console.error(error);

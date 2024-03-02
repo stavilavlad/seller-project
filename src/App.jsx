@@ -6,6 +6,7 @@ import { createContext, useState } from "react";
 import { loader as loaderProducts } from "./pages/Products";
 import { loader as loaderSingleProduct } from "./pages/SingleProduct";
 import { loader as loaderEditListing } from "./pages/EditListing";
+import { loader as loaderMyListings } from "./pages/MyListings";
 
 // ACTIONS
 import { action as actionListing } from "./pages/Listing";
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
       {
         path: "mylistings",
         element: <MyListings />,
+        loader: loaderMyListings(store),
       },
       {
         path: "listing/:id",

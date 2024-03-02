@@ -1,13 +1,26 @@
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, useNavigate } from "react-router-dom";
 import { BiImageAdd } from "react-icons/bi";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+import { toast } from "react-toastify";
+import { customFetch } from "../utils";
 
-const ProductsList = ({ filters, filteredProducts, products }) => {
+const ProductsList = ({ filters, filteredProducts, products, mylist }) => {
+  const navigate = useNavigate();
+  async function handleDelete(id) {
+    try {
+      const response = await customFetch.delete(`/products/${id}`);
+      toast.success(response.data);
+      navigate("/mylistings");
+    } catch (error) {
+      toast.error(error.response.data);
+    }
+  }
+
   return (
     <div className="grid gap-y-8">
-      {(filters.search || filters.category || filters.new || filters.range ? filteredProducts : products).map((item) => {
+      {(filters?.search || filters?.category || filters?.new || filters?.range ? filteredProducts : products).map((item) => {
         const { id, title, description, images, price, negociable, category } = item;
-        console.log(images);
-
         return (
           <div key={id} className="flex flex-col gap-8">
             <Link to={`/products/${id}`} className="grid gap-8 md:grid-cols-[auto_1fr] hover:scale-105 duration-200 rounded-lg ">
@@ -36,6 +49,20 @@ const ProductsList = ({ filters, filteredProducts, products }) => {
                 <p>{description.substring(0, 250) + "..."}</p>
               </div>
             </Link>
+            {mylist ? (
+              <div className="flex gap-4 ">
+                <Link to={`/listing/${id}`} className="btn btn-accent btn-sm">
+                  <FaRegEdit className="w-4 h-4" />
+                  Edit
+                </Link>
+                <button type="button" onClick={() => handleDelete(id)} className="btn btn-accent  btn-sm">
+                  <MdDeleteForever className="w-5 h-5" />
+                  Delete
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
             <hr className=" border-t-base-300"></hr>
           </div>
         );

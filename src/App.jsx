@@ -1,13 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, Layout, Products, Listing, SingleProduct, MyListings, Login, Register, Error } from "./pages/index";
+import { HomePage, Layout, Products, Listing, SingleProduct, MyListings, Login, Register, Error, EditListing } from "./pages/index";
 import { createContext, useState } from "react";
 
 // LOADERS
 import { loader as loaderProducts } from "./pages/Products";
 import { loader as loaderSingleProduct } from "./pages/SingleProduct";
+import { loader as loaderEditListing } from "./pages/EditListing";
 
 // ACTIONS
 import { action as actionListing } from "./pages/Listing";
+import { action as actionEditListing } from "./pages/EditListing";
 import { action as actionLogin } from "./pages/Login";
 import { action as actionRegister } from "./pages/Register";
 
@@ -43,6 +45,12 @@ const router = createBrowserRouter([
       {
         path: "mylistings",
         element: <MyListings />,
+      },
+      {
+        path: "listing/:id",
+        element: <EditListing />,
+        loader: loaderEditListing,
+        action: actionEditListing,
       },
     ],
   },

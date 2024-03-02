@@ -41,7 +41,7 @@ const SingleProduct = () => {
 
         {/* CAROUSEL */}
         <div className="carousel w-full">
-          {images.map((image, index) => {
+          {images?.map((image, index) => {
             const prevIndex = (index - 1 + images.length) % images.length;
             const nextIndex = (index + 1) % images.length;
             return (
@@ -62,16 +62,16 @@ const SingleProduct = () => {
       </div>
 
       {/* USER INFO */}
-      <div>
+      <div className=" row-span-2">
         <UserInfo product={product} />
         {user?.id == user_id ? (
           <>
             <div className="bg-base-200 mt-6 rounded-lg p-6 grid grid-cols-2 gap-4">
               <h3 className="col-span-2 font-semibold">Modify / Delete Product </h3>
-              <button className="btn btn-accent ">
+              <Link to={`/listing/${id}`} className="btn btn-accent ">
                 <FaRegEdit className="w-4 h-4" />
                 Edit
-              </button>
+              </Link>
               <button type="button" onClick={handleDelete} className="btn btn-accent ">
                 <MdDeleteForever className="w-5 h-5" />
                 Delete

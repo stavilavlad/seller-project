@@ -64,7 +64,7 @@ import { IoTrashOutline } from "react-icons/io5";
 
 // export default ImagesGrid;
 
-const ImagesGridInput = () => {
+const ImagesGridInput = ({ text }) => {
   const [files, setFiles] = useState(Array.from({ length: 4 }, () => null));
 
   const displayImage = (index, e) => {
@@ -93,6 +93,7 @@ const ImagesGridInput = () => {
   return (
     <div className="bg-base-200 mb-8 p-4 rounded-lg flex flex-col">
       <h2 className="text-primary font-semibold text-2xl pt-3">Add Images</h2>
+      <p className="text-sm text-slate-400">{text}</p>
       <div className="grid sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:max-w-[60%] gap-4 my-4">
         {files.map((file, index) => (
           <div key={index}>

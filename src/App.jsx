@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { HomePage, Layout, Products, Listing, SingleProduct, MyListings, Login, Register, Error, EditListing } from "./pages/index";
+import { HomePage, Layout, Products, Listing, SingleProduct, MyListings, Login, Register, Error, EditListing, UserListings } from "./pages/index";
 import { createContext, useState } from "react";
 
 // LOADERS
@@ -7,6 +7,7 @@ import { loader as loaderProducts } from "./pages/Products";
 import { loader as loaderSingleProduct } from "./pages/SingleProduct";
 import { loader as loaderEditListing } from "./pages/EditListing";
 import { loader as loaderMyListings } from "./pages/MyListings";
+import { loader as loaderUserListings } from "./pages/UserListings";
 
 // ACTIONS
 import { action as actionListing } from "./pages/Listing";
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
         element: <EditListing />,
         loader: loaderEditListing,
         action: actionEditListing,
+      },
+      {
+        path: "user/listings/:id",
+        element: <UserListings />,
+        loader: loaderUserListings,
       },
     ],
   },

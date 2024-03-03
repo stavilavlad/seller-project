@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const UserInfo = ({ product }) => {
   const { user_id, username, registration_date: createdAt } = product;
@@ -11,7 +11,9 @@ const UserInfo = ({ product }) => {
         <p>Joined: {createdAt.substring(0, 10)}</p>
         <p>Maybe Location</p>
         <button className="btn bg-accent text-accent-content w-full mt-4">TEXT SELLER</button>
-        <Link className=" link link-info pt-4">More listings from this user</Link>
+        <Link to={`/user/listings/${user_id}`} className="link link-info pt-4">
+          More listings from this user
+        </Link>
       </div>
     </div>
   );

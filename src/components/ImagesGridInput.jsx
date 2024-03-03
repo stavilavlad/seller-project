@@ -84,7 +84,7 @@ const ImagesGridInput = ({ text }) => {
       updatedFiles[index] = null;
       return updatedFiles;
     });
-    const fileInput = document.querySelector(`input[name="image${index + 1}"]`);
+    const fileInput = document.querySelector(`input[name="file${index}"]`);
     if (fileInput) {
       fileInput.value = null;
     }
@@ -105,7 +105,7 @@ const ImagesGridInput = ({ text }) => {
               ) : (
                 <BiImageAdd className="w-6 h-6" />
               )}
-              <input type="file" name={"file"} onChange={(e) => displayImage(index, e)} accept="image/*" className="hidden"></input>
+              <input type="file" name={`file${index}`} onChange={(e) => displayImage(index, e)} accept="image/*" className="hidden"></input>
             </label>
 
             {file ? (

@@ -99,7 +99,7 @@ const Navbar = () => {
             <>
               <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost capitalize text-lg">
-                  {user.username}
+                  {user.username.substring(0, 15)}
                 </div>
                 <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-200 rounded-box w-52 mt-4">
                   <li className="text-base-content">

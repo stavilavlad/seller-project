@@ -29,7 +29,7 @@ const UserListings = () => {
 
   return (
     <div className="align-element my-6">
-      <SectionTitle text={`${products[0].username}'s Products`} />
+      <SectionTitle text={`${products[0].username}'s Listings`} />
       <div className="align-element my-8">
         <ProductsList products={products} />
       </div>

@@ -109,7 +109,7 @@ const EditListing = () => {
         <ImagesGridInput text={"If no images are provided the old ones will persist *"} />
 
         {/* PRICE */}
-        <PriceInput price={product.price} negociable={product.negociable} />
+        <PriceInput price={product.price} negociable={product.negociable} phone={product.phone} />
 
         <button type="submit" disabled={title.length > 70 || description.length > 5000 ? true : false} className={`btn btn-primary`}>
           Update Listing

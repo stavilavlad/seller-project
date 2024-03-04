@@ -60,7 +60,6 @@ const Listing = () => {
   }
 
   return (
-    // {user || <Navigate to={"/login"} replace={true} />}
     <div className="align-element">
       <h1 className="text-3xl font-bold mt-8 ">Create Listing</h1>
       <Form method="POST" className="pb-8" encType="multipart/form-data">

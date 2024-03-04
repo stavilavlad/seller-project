@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PriceInput = ({ price, negociable }) => {
+const PriceInput = ({ price, negociable, phone }) => {
   const [mode, setMode] = useState("price");
 
   return (
@@ -33,6 +33,14 @@ const PriceInput = ({ price, negociable }) => {
         ) : (
           ""
         )}
+        {/* TEL INPUT */}
+        <div className="py-2">
+          <label className="font-semibold">
+            Phone number
+            <input type="tel" name="phone" placeholder="Tel." defaultValue={phone} className="input input-bordered bg-base-300 input-sm mx-4 " />
+          </label>
+          <p className="text-sm text-slate-400 mt-1">The phone number you wish to be contacted at for this product</p>
+        </div>
       </div>
     </>
   );

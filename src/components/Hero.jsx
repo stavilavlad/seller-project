@@ -15,7 +15,7 @@ const Hero = () => {
           <p className="py-6 text-lg">
             Welcome to <span className="text-primary font-semibold uppercase">Seller!</span>, the ultimate destination for hassle-free buying and selling! Discover an online marketplace where individuals can effortlessly showcase items they want to sell, and buyers can browse through a curated collection of offerings.
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          {/* <button className="btn btn-primary">Get Started</button> */}
         </div>
         <img src={heroImg} className="hidden lg:block w-full rounded-lg shadow-2xl col-span-3 object-cover " />
       </div>

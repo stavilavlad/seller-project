@@ -102,11 +102,10 @@ const Navbar = () => {
                   {user?.username?.substring(0, 15)}
                 </div>
                 <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-200 rounded-box w-52 mt-4">
-                  <li className="text-base-content">
-                    <a>Item 1</a>
-                  </li>
-                  <li className="text-base-content">
-                    <a>Item 1</a>
+                  <li className="text-base-content  ">
+                    <Link to={"/user/profile"} className="rounded-b-none">
+                      Profile
+                    </Link>
                   </li>
                   <li className="text-base-content">
                     <Link to="/listing" className="btn md:hidden w-full btn-primary btn-sm">
@@ -114,8 +113,10 @@ const Navbar = () => {
                       Create Listing
                     </Link>
                   </li>
-                  <li className="text-base-content">
+
+                  <li className="text-base-content border border-t-2 border-t-base-300 font-semibold">
                     <button
+                      className=" rounded-t-none"
                       type="button"
                       onClick={() => {
                         dispatch(logoutUser());

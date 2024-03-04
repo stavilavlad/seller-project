@@ -11,7 +11,7 @@ const initialState = {
 
 export const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: initialState,
   reducers: {
     loginUser: (state, action) => {
       const user = { ...action.payload };
@@ -24,9 +24,15 @@ export const userSlice = createSlice({
       localStorage.removeItem("user");
       toast.success("Logged out successfully!");
     },
+    changeUsername: (state, action) => {
+      const user = { ...state.user, username: action.payload };
+      state.user = user;
+      const userString = JSON.stringify(user);
+      localStorage.setItem("user", userString);
+    },
   },
 });
 
-export const { loginUser, logoutUser } = userSlice.actions;
+export const { loginUser, logoutUser, changeUsername } = userSlice.actions;
 
 export default userSlice.reducer;

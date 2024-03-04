@@ -9,3 +9,4 @@ export { default as Register } from "./Register.jsx";
 export { default as Error } from "./Error.jsx";
 export { default as EditListing } from "./EditListing.jsx";
 export { default as UserListings } from "./UserListings.jsx";
+export { default as Profile } from "./Profile.jsx";

@@ -18,7 +18,7 @@ const SingleProduct = () => {
   const navigate = useNavigate();
 
   const { product, views } = useLoaderData();
-  const { id, title, category, description, images, new: newProperty, date, price, negociable, user_id } = product;
+  const { id, title, category, description, images, new: newProperty, date, price, negociable, user_id, phone } = product;
 
   async function handleDelete() {
     try {

@@ -9,7 +9,7 @@ const ProductsGrid = ({ filters, filteredProducts, products }) => {
         const { id, title, description, images, price, negociable, category } = item;
         return (
           <Link key={id} to={`/products/${id}`} className="card card-compact sm:max-w-96 shadow-xl hover:scale-105 duration-200">
-            <figure>{images?.length > 0 ? <img src={`http://localhost:3000/uploads/${images[0]}`} alt={title} className="w-full h-64 md:h-48 lg:h-48 xl:h-60 object-cover" /> : <BiImageAdd className="w-full h-64 md:h-48 xl:h-60 " />}</figure>
+            <figure>{images?.length > 0 ? <img src={`https://server-self-ten-30.vercel.app/uploads/${images[0]}`} alt={title} className="w-full h-64 md:h-48 lg:h-48 xl:h-60 object-cover" /> : <BiImageAdd className="w-full h-64 md:h-48 xl:h-60 " />}</figure>
             <div className="card-body  rounded-b-box">
               <div className="flex justify-between sm:px-2">
                 <h2 className="card-title text-xl md:text-lg lg:text-lg">{title}</h2>

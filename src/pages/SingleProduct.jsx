@@ -50,7 +50,7 @@ const SingleProduct = () => {
             const nextIndex = (index + 1) % images.length;
             return (
               <div key={image} id={`slide${index}`} className="carousel-item relative w-full">
-                <img src={`http://localhost:3000/uploads/${image}`} alt={title} className="w-full max-h-[900px] object-contain px-6 pt-2 pb-6" />
+                <img src={`https://server-self-ten-30.vercel.app/uploads/${image}`} alt={title} className="w-full max-h-[900px] object-contain px-6 pt-2 pb-6" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-1 right-1  sm:left-5 sm:right-5 top-1/2 p-8">
                   <a href={`#slide${prevIndex}`} className="btn btn-circle btn-sm">
                     ❮

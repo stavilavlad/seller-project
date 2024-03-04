@@ -20,7 +20,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const handleGoogleAuth = () => {
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("https://server-self-ten-30.vercel.app/auth/google", "_self");
   };
 
   return (

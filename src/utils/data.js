@@ -2,7 +2,7 @@ export const categories = [
   {
     id: 5,
     title: "arts & crafts",
-    img: "/assets/card-arts.jpg",
+    img: "client\\src\\assets\\card-arts.jpg",
   },
   {
     id: 2,

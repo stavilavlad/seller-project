@@ -30,7 +30,6 @@ export const loader = async ({ params }) => {
 const EditListing = () => {
   const user = useSelector((state) => state.userState.user);
   const product = useLoaderData();
-  console.log(product);
 
   const [title, setTitle] = useState(product.title);
   const [description, setDescription] = useState(product.description);

@@ -22,13 +22,17 @@ export const action =
   };
 
 const Login = () => {
+  const handleGoogleAuth = () => {
+    window.open("http://localhost:3000/auth/google", "_self");
+  };
+
   return (
     <div className="bg-base-100 h-screen grid place-items-center">
       <div className=" w-screen h-screen sm:w-[26rem] sm:h-[33rem]  bg-base-200 px-4 py-6  sm:rounded-lg flex flex-col ">
         <h1 className="text-center text-3xl font-bold pb-6">Login</h1>
         <div className="flex flex-col w-full ">
           <div className="grid card rounded-box place-items-center py-4">
-            <button className="flex justify-center bg-base-100 w-[22rem] rounded-lg  px-6 py-2 text-sm font-medium text-base-content hover:bg-base-300">
+            <button type="button" onClick={handleGoogleAuth} className="flex justify-center bg-base-100 w-[22rem] rounded-lg  px-6 py-2 text-sm font-medium text-base-content hover:bg-base-300">
               <svg className="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="-0.5 0 48 48" version="1.1">
                 <g id="Icons" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                   <g id="Color-" transform="translate(-401.000000, -860.000000)">
@@ -66,9 +70,10 @@ const Login = () => {
             <Form method="POST" className="card w-96 p-4  flex flex-col gap-y-4">
               <label className="input input-bordered flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70">
-                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                  <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
+                  <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
                 </svg>
-                <input type="text" className="grow" name="username" placeholder="Username" />
+                <input type="text" className="grow" name="username" placeholder="E-mail" />
               </label>
               <label className="input input-bordered flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70">

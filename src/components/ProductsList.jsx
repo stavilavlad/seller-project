@@ -1,19 +1,25 @@
-import { useLoaderData, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiImageAdd } from "react-icons/bi";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { toast } from "react-toastify";
 import { customFetch } from "../utils";
+import { useSelector } from "react-redux";
 
 const ProductsList = ({ filters, filteredProducts, products, mylist }) => {
+  const user = useSelector((state) => state.userState.user);
   const navigate = useNavigate();
   async function handleDelete(id) {
     try {
-      const response = await customFetch.delete(`/products/${id}`);
+      const response = await customFetch.delete(`/products/${id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       toast.success(response.data);
       navigate("/mylistings");
     } catch (error) {
-      toast.error(error.response.data);
+      toast.error(error.response);
     }
   }
 

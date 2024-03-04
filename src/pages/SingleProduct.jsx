@@ -22,7 +22,11 @@ const SingleProduct = () => {
 
   async function handleDelete() {
     try {
-      const response = await customFetch.delete(`/products/${id}`);
+      const response = await customFetch.delete(`/products/${id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       toast.success(response.data);
       navigate("/mylistings");
     } catch (error) {

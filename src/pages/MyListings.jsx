@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 export const loader = (store) => async () => {
   try {
     const user = store.getState().userState.user;
-
     if (!user) {
       toast.warning("You need to log in first!");
       return redirect("/login");

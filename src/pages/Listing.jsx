@@ -32,6 +32,28 @@ const Listing = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  // const handleLocation = () => {
+  //   const options = {
+  //     enableHighAccuracy: true,
+  //     timeout: 5000,
+  //     maximumAge: 0,
+  //   };
+
+  //   function success(pos) {
+  //     const crd = pos.coords;
+
+  //     console.log("Your current position is:");
+  //     console.log(`Latitude : ${crd.latitude}`);
+  //     console.log(`Longitude: ${crd.longitude}`);
+  //     console.log(`More or less ${crd.accuracy} meters.`);
+  //   }
+
+  //   function error(err) {
+  //     console.warn(`ERROR(${err.code}): ${err.message}`);
+  //   }
+  //   navigator.geolocation.getCurrentPosition(success, error, options);
+  // };
+
   if (!user) {
     toast.warning("You need to log in");
     return <Navigate to={"/login"} replace={true} />;
@@ -101,6 +123,10 @@ const Listing = () => {
 
         {/* PRICE */}
         <PriceInput />
+
+        {/* <button className="btn" onClick={handleLocation}>
+          Location
+        </button> */}
 
         <button type="submit" disabled={title.length > 70 || description.length > 5000 ? true : false} className={`btn btn-primary`}>
           Create Listing

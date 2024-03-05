@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="align-element navbar text-secondary-content">
         <div className=" navbar-start">
           <Link to="/" className="">
-            <img src="src\assets\seller-high-resolution-logo-black-transparent (1).png" alt="logo" style={{ width: "185px" }}></img>
+            <img src="/seller-high-resolution-logo-black-transparent (1).png" alt="logo" style={{ width: "185px" }}></img>
           </Link>
           {/* DROPDOWN LIST */}
           <div className="dropdown">

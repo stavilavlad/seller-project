@@ -102,6 +102,7 @@ const Navbar = () => {
                   {user?.username?.substring(0, 1)}
                 </div>
                 <ul tabIndex={0} className="menu dropdown-content z-[1] p-2 shadow bg-base-200 rounded-box w-52 mt-4">
+                  <li className="text-base-content">{user?.username}</li>
                   <li className="text-base-content  ">
                     <Link to={"/user/profile"} className="rounded-b-none">
                       Profile

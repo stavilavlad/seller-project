@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const UserInfo = ({ product }) => {
   const { user_id, username, registration_date: createdAt, phone } = product;
   const user = useSelector((state) => state.userState.user);
-  console.log(product);
 
   return (
     <div className="w-full">

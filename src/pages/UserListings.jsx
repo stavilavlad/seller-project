@@ -7,7 +7,6 @@ import ProductsList from "../components/ProductsList";
 export const loader = async ({ params }) => {
   try {
     const response = await customFetch(`/user/listings/${params.id}`);
-    console.log(response.data);
     const products = response.data;
     return products;
   } catch (error) {

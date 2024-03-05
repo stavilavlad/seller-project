@@ -11,7 +11,7 @@ const ProductsList = ({ filters, filteredProducts, products, mylist }) => {
   const navigate = useNavigate();
   async function handleDelete(id) {
     try {
-      const response = await customFetch.delete(`/products/${id}`, {
+      const response = await customFetch.post(`/products/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

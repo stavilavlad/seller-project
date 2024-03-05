@@ -22,7 +22,7 @@ const SingleProduct = () => {
 
   async function handleDelete() {
     try {
-      const response = await customFetch.delete(`/products/${id}`, {
+      const response = await customFetch.post(`/products/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

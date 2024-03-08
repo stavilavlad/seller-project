@@ -23,6 +23,7 @@ export const loader = (store) => async () => {
     return products;
   } catch (error) {
     console.error(error);
+    return null;
   }
 };
 
@@ -41,9 +42,7 @@ const MyListings = () => {
   return (
     <div className="align-element my-6">
       <SectionTitle text="my listings" />
-      <div className="align-element my-8">
-        <ProductsList products={products} mylist={true} />
-      </div>
+      <div className="align-element my-8">{products.length == 0 ? <p className=" font-semibold text-2xl">No personal listings found...</p> : <ProductsList products={products} mylist={true} />}</div>
     </div>
   );
 };

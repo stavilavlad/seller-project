@@ -45,7 +45,7 @@ const Products = () => {
 
   const filteredCount = filteredProducts.length;
 
-  const pageSize = 10;
+  const pageSize = 9;
   const pages = Math.ceil(filteredCount / pageSize);
 
   const paginatedProducts = Array.from({ length: pages }, (item, index) => {

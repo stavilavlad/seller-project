@@ -28,6 +28,12 @@ const Error = () => {
     <main className="grid min-h-[100vh]  place-items-center px-8">
       <img src={errorSvg} className=" w-80"></img>
       <h4 className="text-center font-bold text-4xl"> There Was An Error...</h4>
+      <p className="text-center  pt-4 capitalize">
+        Might need to log in again if Auth Token expired
+        <Link to="/login" className="link link-primary  pl-4">
+          Log in
+        </Link>
+      </p>
     </main>
   );
 };
